@@ -1,10 +1,8 @@
 #!/bin/bash
 
 # Replace with the actual PR number and keywords
-pr_number=12345
+pr_number=$PR_NUMBER
 keywords="bug fix, feature request"
-echo "Endpoint in script:"
-ehco $SUGGESTION_ENDPOINT
 
 # Send the curl request
 curl -X POST -F "pr_number=$pr_number" -F "keywords=$keywords" "$SUGGESTION_ENDPOINT/"suggestions

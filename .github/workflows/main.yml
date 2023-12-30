@@ -14,8 +14,9 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Run your review tasks
-        env: 
-          SUGGESTION_ENDPOINT: ${{ secrets.SUGGESTION_ENDPOINT }}
+        env:
+          PR_NUMBER: ${{ github.event.issue.number }}
+          SUGGESTION_ENDPOINT: https://harshe.pythonanywhere.com
         run: |
           echo "PR Number: ${{ github.event.issue.number }}"
           ./scripts/call_suggestions.sh # Execute the script
