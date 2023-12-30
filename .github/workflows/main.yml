@@ -16,10 +16,10 @@ jobs:
       - name: Run your review tasks
         env:
           PR_NUMBER: ${{ github.event.issue.number }}
-          SUGGESTION_ENDPOINT: https://harshe.pythonanywhere.com
+          SUGGESTION_ENDPOINT: ${{ vars.SUGGESTION_ENDPOINT }}
+          KEYWORDS: ${{ vars.KEYWORDS }}
         run: |
-          echo "PR Number: ${{ github.event.issue.number }}"
-          echo "${{env.SUGGESTION_ENDPOINT}}"
+          echo "Create review for PR Number: $PR_NUMBER"
           ./scripts/call_suggestions.sh # Execute the script
           echo "Review completed!"
           # Replace this with your review process commands
