@@ -5,19 +5,13 @@ on:
     types: [created]
 
 jobs:
-  Review:
+  ReviewJob:
     runs-on: ubuntu-latest
     if: contains(github.event.comment.body, 'review-pr')
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Get Pull Request Number
-        id: pr
-        run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Run your review tasks
-        run: echo "Review completed for PR ${{ steps.pr.outputs.pull_request_number }}"
+        run: |
+          echo "PR Number: ${{ github.event.issue.number }}"
+          echo "Review completed!"
+          # Replace this with your review process commands
