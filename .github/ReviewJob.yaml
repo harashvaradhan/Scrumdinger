@@ -1,0 +1,21 @@
+name: Trigger Review Job on Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  ReviewJob:
+    runs-on: ubuntu-latest
+    if: contains(github.event.comment.body, 'review_pr')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run your review tasks
+        run: |
+          # Replace this with your review process commands, e.g.,
+          # npm install
+          # npm test
+          # echo "Review completed!"
