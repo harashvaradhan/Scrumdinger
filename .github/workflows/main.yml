@@ -8,11 +8,18 @@ jobs:
   ReviewJob:
     runs-on: ubuntu-latest
     if: contains(github.event.comment.body, 'review-pr')
-
+    environment:
+      name: env
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+      
+      - name: Print variables
+        run: |
+          echo "SUGGESTION_ENDPOINT: ${{ vars.SUGGESTION_ENDPOINT }}"
+          echo "KEYWORDS: ${{ vars.KEYWORDS }}"
+    
       - name: Run your review tasks
         env:
           PR_NUMBER: ${{ github.event.issue.number }}
