@@ -10,9 +10,14 @@ jobs:
     if: contains(github.event.comment.body, 'review-pr')
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
       - name: Run your review tasks
+        env: 
+          SUGGESTION_ENDPOINT: ${{ secrets.SUGGESTION_ENDPOINT }}
         run: |
           echo "PR Number: ${{ github.event.issue.number }}"
-          ./scripts/call_suggestions.sh  # Execute the script
+          ./scripts/call_suggestions.sh # Execute the script
           echo "Review completed!"
           # Replace this with your review process commands
