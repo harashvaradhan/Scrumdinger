@@ -19,12 +19,14 @@ jobs:
         run: |
           echo "SUGGESTION_ENDPOINT: ${{ vars.SUGGESTION_ENDPOINT }}"
           echo "KEYWORDS: ${{ vars.KEYWORDS }}"
+          echo "FILE_TYPES: ${{ vars.FILE_TYPES }}"
     
       - name: Run your review tasks
         env:
           PR_NUMBER: ${{ github.event.issue.number }}
           SUGGESTION_ENDPOINT: ${{ vars.SUGGESTION_ENDPOINT }}
           KEYWORDS: ${{ vars.KEYWORDS }}
+          FILE_TYPES: ${{ vars.FILE_TYPES }}
         run: |
           echo "Create review for PR Number: $PR_NUMBER"
           ./scripts/call_suggestions.sh # Execute the script
