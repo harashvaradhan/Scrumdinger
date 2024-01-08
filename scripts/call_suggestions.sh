@@ -1,6 +1,6 @@
 #!/bin/bash
 
 # Send the curl request
-curl --location --request GET "$SUGGESTION_ENDPOINT/suggestions?pr_number=$PR_NUMBER&keywords=$KEYWORDS&file_types=$FILE_TYPES"
+curl -G --location --data-urlencode "pr_number=$PR_NUMBER" --data-urlencode "keywords=$KEYWORDS" --data-urlencode "file_types=$FILE_TYPES" "$SUGGESTION_ENDPOINT/suggestions"
 
 echo "Finished"
